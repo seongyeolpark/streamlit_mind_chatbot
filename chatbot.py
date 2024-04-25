@@ -36,11 +36,11 @@ for message in st.session_state.messages:
 if prompt := st.chat_input("재이의 고민을 얘기해줄래?"): 
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
-        st.image(girl_icon)
+        st.image(girl_icon, width=30)
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        st.image(dad_icon)
+        st.image(dad_icon, width=30)
         message_placeholder = st.empty()
         full_response = ""
 
