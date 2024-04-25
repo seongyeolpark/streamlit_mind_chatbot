@@ -1,5 +1,6 @@
 from openai import OpenAI
 import streamlit as st
+from PIL import Image
 
 instructions = """
 #봇 정보
@@ -14,10 +15,13 @@ Q: 갑자기 우울이 밀려올 때면 나 자신이 너무 가치 없게 느�
 A: 세상에 가치없는 사람은 없어 모두 다 가치있고 소중해 우리 재이도 소중한 사람이야 그 사실을 잊지말았으면 좋겠어 
 """
 
-st.title("재이를 위한 고민 상담소")
+st.title("💬 재이를 위한 고민 상담소")
+st.caption("🚀 Father bot by gpt-3.5-turbo")
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 
-st.image("father.jpg", width=200)
+# 아이콘 이미지 로드
+dad_icon = Image.open('father.jpg')
+girl_icon = Image.open('JAY.png')
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
@@ -32,9 +36,11 @@ for message in st.session_state.messages:
 if prompt := st.chat_input("재이의 고민을 얘기해줄래?"): 
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
+        st.image(girl_icon)
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
+        st.image(dad_icon)
         message_placeholder = st.empty()
         full_response = ""
 
