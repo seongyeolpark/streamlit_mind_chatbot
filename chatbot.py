@@ -2,7 +2,6 @@ from openai import OpenAI
 import streamlit as st
 from PIL import Image
 from datetime import datetime
-# from streamlit_gsheets import GSheetsConnection
 
 
 instructions = """
@@ -29,8 +28,7 @@ girl_icon = Image.open('JAY.png')
 
 #파일 저장경로
 # Create a connection object.
-conn = st.connection("gsheets", type=GSheetsConnection)
-df = conn.read(worksheet="Sheet1")
+conn = st.connection("snowflake")
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
@@ -71,7 +69,7 @@ if prompt := st.chat_input("재이의 고민을 얘기해줄래?"):
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
     # Print results.
-    df.write(f"{datetime.today().strftime('%Y-%m-%d')} : {prompt}:")
+    # df.write(f"{datetime.today().strftime('%Y-%m-%d')} : {prompt}:")
 
   
 
