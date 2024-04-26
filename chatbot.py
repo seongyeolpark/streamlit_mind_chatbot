@@ -2,7 +2,7 @@ from openai import OpenAI
 import streamlit as st
 from PIL import Image
 from datetime import datetime
-from st-gsheets-connection import GSheetsConnection
+from streamlit_gsheets import GSheetsConnection
 
 
 instructions = """
