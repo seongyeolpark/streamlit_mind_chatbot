@@ -30,11 +30,7 @@ girl_icon = Image.open('JAY.png')
 #파일 저장경로
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
-df = conn.write(worksheet="Sheet1")
-
-
-with open(datetime.today().strftime('%Y-%m-%d') + '.txt', 'a') as f:
-    f.write('okokokokokokokokokokokokokokokokokokokok' + '\n') 
+df = conn.read(worksheet="Sheet1")
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
