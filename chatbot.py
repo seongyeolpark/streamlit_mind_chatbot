@@ -1,6 +1,7 @@
 from openai import OpenAI
 import streamlit as st
 from PIL import Image
+from datetime import datetime
 
 instructions = """
 #봇 정보
@@ -61,3 +62,8 @@ if prompt := st.chat_input("재이의 고민을 얘기해줄래?"):
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
     st.session_state.messages.append({"role": "assistant", "content": full_response})
+
+    with open(datetime.today().strftime('%Y-%m-%d') + '.txt', 'a') as f:
+        f.write(prompt + '\n') 
+
+    
