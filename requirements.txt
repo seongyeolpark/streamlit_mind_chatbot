@@ -1,3 +1,4 @@
 openai
 streamlit
-snowflake-connector-python
+mysqlclient==8.0.35
+SQLAlchemy==8.0.35

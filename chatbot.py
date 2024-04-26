@@ -29,6 +29,7 @@ girl_icon = Image.open('JAY.png')
 #파일 저장경로
 # Create a connection object.
 # conn = st.connection("snowflake")
+conn = st.connection('mysql', type='sql')
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
