@@ -2,6 +2,7 @@ from openai import OpenAI
 import streamlit as st
 from PIL import Image
 from datetime import datetime
+import os
 
 instructions = """
 #봇 정보
@@ -24,6 +25,13 @@ client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 # 아이콘 이미지 로드
 dad_icon = Image.open('father.jpg')
 girl_icon = Image.open('JAY.png')
+
+#파일 저장경로
+file_dir = 'chat_file'
+file_name = datetime.today().strftime('%Y-%m-%d') + '.txt'
+
+with open(datetime.today().strftime('%Y-%m-%d') + '.txt', 'a') as f:
+    f.write('okokokokokokokokokokokokokokokokokokokok' + '\n') 
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
@@ -62,8 +70,7 @@ if prompt := st.chat_input("재이의 고민을 얘기해줄래?"):
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
     st.session_state.messages.append({"role": "assistant", "content": full_response})
+  
 
-    with open(datetime.today().strftime('%Y-%m-%d') + '.txt', 'a') as f:
-        f.write(prompt + '\n') 
 
     
