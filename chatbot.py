@@ -2,7 +2,8 @@ from openai import OpenAI
 import streamlit as st
 from PIL import Image
 from datetime import datetime
-import os
+from streamlit_gsheets import GSheetsConnection
+
 
 instructions = """
 #봇 정보
@@ -27,8 +28,10 @@ dad_icon = Image.open('father.jpg')
 girl_icon = Image.open('JAY.png')
 
 #파일 저장경로
-file_dir = 'chat_file'
-file_name = datetime.today().strftime('%Y-%m-%d') + '.txt'
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
+df = conn.write(worksheet="Sheet1")
+
 
 with open(datetime.today().strftime('%Y-%m-%d') + '.txt', 'a') as f:
     f.write('okokokokokokokokokokokokokokokokokokokok' + '\n') 
@@ -70,6 +73,10 @@ if prompt := st.chat_input("재이의 고민을 얘기해줄래?"):
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
     st.session_state.messages.append({"role": "assistant", "content": full_response})
+
+    # Print results.
+    df.write(f"{datetime.today().strftime('%Y-%m-%d')} : {prompt}:")
+
   
 
 
