@@ -2,3 +2,4 @@ openai
 streamlit
 mysql-connector-python
 sqlalchemy
+mysqlclient
