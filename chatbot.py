@@ -2,6 +2,7 @@ from openai import OpenAI
 import streamlit as st
 from PIL import Image
 from datetime import datetime
+import os
 
 
 instructions = """
