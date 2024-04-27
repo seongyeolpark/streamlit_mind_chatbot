@@ -32,16 +32,16 @@ girl_icon = Image.open('JAY.png')
 # conn = st.connection("snowflake")
 # conn = st.connection('mysql', type='sql')
 
-upload_file = st.file_uploader('이미지 파일 선택', type=['jpg', 'png', 'jpeg'])
-# 이미지 업로더, 이미지 파일만 업로드하게 설정
+# upload_file = st.file_uploader('이미지 파일 선택', type=['jpg', 'png', 'jpeg'])
+# # 이미지 업로더, 이미지 파일만 업로드하게 설정
 
-if upload_file is not None:
-    upload_file.name = datetime.now().isoformat().replace(':', '_') + '.jpg'
-    # 지금 시간을 기준으로 업로드 파일 이름 설정
+# if upload_file is not None:
+#     upload_file.name = datetime.now().isoformat().replace(':', '_') + '.jpg'
+#     # 지금 시간을 기준으로 업로드 파일 이름 설정
 
-    with open(upload_file.name, 'wb') as f :
-        f.write(upload_file.getbuffer())
-        st.success("Saved file : {}".format(upload_file.name))
+#     with open(upload_file.name, 'wb') as f :
+#         f.write(upload_file.getbuffer())
+#         st.success("Saved file : {}".format(upload_file.name))
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
