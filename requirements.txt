@@ -1,4 +1,4 @@
 openai
 streamlit
-mysqlclient
+mysql-connector-python
 SQLAlchemy
