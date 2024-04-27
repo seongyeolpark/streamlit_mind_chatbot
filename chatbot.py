@@ -30,7 +30,7 @@ girl_icon = Image.open('JAY.png')
 #파일 저장경로
 # Create a connection object.
 # conn = st.connection("snowflake")
-conn = st.connection('mysql', type='sql')
+# conn = st.connection('mysql', type='sql')
 
 # upload_file = st.file_uploader('이미지 파일 선택', type=['jpg', 'png', 'jpeg'])
 # # 이미지 업로더, 이미지 파일만 업로드하게 설정
