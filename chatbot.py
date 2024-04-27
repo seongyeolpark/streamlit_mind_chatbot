@@ -31,6 +31,19 @@ girl_icon = Image.open('JAY.png')
 # conn = st.connection("snowflake")
 conn = st.connection('mysql', type='sql')
 
+upload_file = st.file_uploader('이미지 파일 선택', type=['jpg', 'png', 'jpeg'])
+# 이미지 업로더, 이미지 파일만 업로드하게 설정
+
+current_time = datetime.now()
+upload_file.name = current_time.isoformat().replace(':', '_') + '.jpg'
+# 지금 시간을 기준으로 업로드 파일 이름 설정
+
+with open(upload_file.name, 'wb') as f :
+    f.write(upload_file.getbuffer())
+    st.success("Saved file : {}".format(upload_file.name))
+
+    
+
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
 
@@ -40,6 +53,8 @@ if "messages" not in st.session_state:
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
+
+
 
 if prompt := st.chat_input("재이의 고민을 얘기해줄래?"): 
     st.session_state.messages.append({"role": "user", "content": prompt})

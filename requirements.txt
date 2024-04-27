@@ -1,4 +1,2 @@
 openai
 streamlit
-mysqlclient==8.0.35
-SQLAlchemy
