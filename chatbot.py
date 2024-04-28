@@ -45,6 +45,13 @@ except:
 
 update_df = df.iloc[:sheet_len + 1, ]
 
+
+df = pd.DataFrame({'lat' : ['37.564214'],
+                   'lon' : [127.001699] })
+
+st.map(df)
+
+
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
 
