@@ -33,20 +33,12 @@ current_date = datetime.now().strftime('%Y.%m.%d')
 conn = st.connection("gsheets", type=GSheetsConnection)
 # Create a connection object.
 
-# st.write(conn)
-# dataframe으로 가져옴
-df = conn.read(worksheet=current_date )
-# st.write(df)
-
-
 try:
-    conn.create(worksheet=current_date )
-    raw_data = {'name': ['jay'],
-             'contents': ['상담시작'],
-             'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
-    update_date = pd.DataFrame(raw_data)
+    df = conn.read(worksheet=current_date )
+
 except:
-    pass
+    conn.create(worksheet=current_date )
+    df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
 
 # raw_data = {'name': ['jay', 'jay', 'jay', 'jay'],
 #              'contents': ['ok', 'good', 'nice', 'ohyes'],
@@ -64,7 +56,7 @@ except:
 # update_df = pd.concat([ df, append_df], ignore_index = True)
 update_df = pd.concat( [df, pd.DataFrame(pd.Series(['jay', 'niceeeeeeeeeeeee', datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]) )], ignore_index = True)
 
-conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
+conn.update(worksheet=current_date, data =  update_df.iloc[df.le:,[0,1,2]] )  
 st.write(update_df )
 # conn.write('ok')
 
