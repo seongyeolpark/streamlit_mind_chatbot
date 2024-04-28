@@ -28,6 +28,7 @@ dad_icon = Image.open('father.jpg')
 girl_icon = Image.open('JAY.png')
 
 current_date = datetime.now().strftime('%Y.%m.%d')
+sheet_len = -1
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
@@ -36,20 +37,21 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 try:
     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
     conn.create(worksheet=current_date , data =  df )
-
-    st.markdown(len(df))
+    sheet_len = len(df)
+    st.markdown('try : ' + len(df))
     
 except:
     df = conn.read(worksheet=current_date )
-    df = df.iloc[:,[0,1,2]]
+    sheet_len = len(df)
+    st.markdown('catch : ' + len(df))
 
+df = df.iloc[:sheet_len + 1, ]
+new_row = pd.DataFrame( {'name' : ['jay'],
+                         'contents' : ['veryverygood'],
+                         'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+update_df = df.append(new_row, ignore_index=True)
 
-# new_row = pd.DataFrame( {'name' : ['jay'],
-#                          'contents' : ['veryverygood'],
-#                          'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-# update_df = df.append(new_row, ignore_index=True)
-
-# conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
+conn.update(worksheet=current_date, data =  update_df )  
 
 
 
