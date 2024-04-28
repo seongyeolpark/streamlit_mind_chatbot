@@ -38,7 +38,9 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 # dataframe으로 가져옴
 df = conn.read()
 
-conn.write('ok')
+
+conn.update(data={ 'name' : 'jay', 'contents':'please', 'datetime':datetime.today().strftime('%Y-%m-%d') } )
+# conn.write('ok')
 
 # Print results.
 # for row in df.itertuples():
