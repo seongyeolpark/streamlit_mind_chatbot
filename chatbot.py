@@ -65,6 +65,7 @@ update_df = df.append(new_row, ignore_index=True)
 
 conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
 st.write(new_row )
+st.write(update_df )
 # conn.write('ok')
 
 # Print results.
