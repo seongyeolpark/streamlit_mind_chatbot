@@ -2,8 +2,8 @@ from openai import OpenAI
 import streamlit as st
 from PIL import Image
 from datetime import datetime
-import os
 from streamlit_gsheets import GSheetsConnection
+import pandas as pd
 
 instructions = """
 #봇 정보
@@ -38,13 +38,20 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 # dataframe으로 가져옴
 df = conn.read()
 
-current_time = datetime.now().strftime('%Y.%m.%d')
+current_date = datetime.now().strftime('%Y.%m.%d')
 try:
-    conn.create(worksheet=current_time )
+    conn.create(worksheet=current_date )
 except:
-    None
+    pass
 
-conn.update(worksheet=current_time, data={'jay', 'please', datetime.today().strftime('%Y-%m-%d - %H:%M:%S') } )
+
+raw_data = {'col0': ['jay', 'jay', 'jay', 'jay'],
+            'col1': ['ok', 'good', 'nice', 'ohyes'],
+            'col2': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
+
+update_data = pd.DataFrame(raw_data)
+
+conn.update(worksheet=current_date, data=update_data )
 # conn.write('ok')
 
 # Print results.
