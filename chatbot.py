@@ -34,7 +34,7 @@ girl_icon = Image.open('JAY.png')
 conn = st.connection("gsheets", type=GSheetsConnection)
 # Create a connection object.
 
-df = conn.read(worksheet="jaybot")
+df = conn.read(worksheet="botlog")
 
 # Print results.
 for row in df.itertuples():
