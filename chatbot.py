@@ -44,7 +44,7 @@ try:
 except:
     None
 
-conn.update(worksheet=current_time, data={ 'A' : 'jay', 'B':'please', 'C':datetime.today().strftime('%Y-%m-%d') } )
+conn.update(worksheet=current_time, data={'jay', 'please', datetime.today().strftime('%Y-%m-%d - %H:%M:%S') } )
 # conn.write('ok')
 
 # Print results.
