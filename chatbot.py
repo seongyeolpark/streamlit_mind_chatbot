@@ -48,7 +48,7 @@ update_df = df.iloc[:sheet_len + 1, ]
 df = pd.DataFrame({'lat' : [37.477186604412],
                    'lon' : [126.98697921535] })
 
-st.map(df,size=20, color='#0044ff')
+st.map(df,size=20, color='#0044ff',use_container_width = True, zoom  = 10 )
 
 
 if "openai_model" not in st.session_state:
