@@ -37,6 +37,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 # st.write(conn)
 # dataframe으로 가져옴
 df = conn.read()
+st.write(df)
 
 current_date = datetime.now().strftime('%Y.%m.%d')
 try:
