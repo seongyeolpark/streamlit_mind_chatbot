@@ -43,6 +43,15 @@ except:
     conn.update(worksheet=current_date, data =  df )  
 
 
+# new_row = pd.DataFrame( {'name' : ['jay'],
+#                          'contents' : ['veryverygood'],
+#                          'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+# update_df = df.append(new_row, ignore_index=True)
+
+# conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
+
+
+
 # raw_data = {'name': ['jay', 'jay', 'jay', 'jay'],
 #              'contents': ['ok', 'good', 'nice', 'ohyes'],
 #              'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
@@ -59,13 +68,6 @@ except:
 # update_df = pd.concat([ df, append_df], ignore_index = True)
 # update_df = pd.concat( [df, pd.DataFrame(pd.Series(['jay', 'niceeeeeeeeeeeee', datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]) )], ignore_index = True)
 
-new_row = pd.DataFrame( {'name' : ['jay'],
-                         'contents' : ['veryverygood'],
-                         'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-update_df = df.append(new_row, ignore_index=True)
-
-conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
-# conn.write('ok')
 
 # Print results.
 # for row in df.itertuples():
