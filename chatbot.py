@@ -36,10 +36,11 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 try:
     df = conn.read(worksheet=current_date )
     df = df.iloc[:,[0,1,2]]
-
+    
 except:
     conn.create(worksheet=current_date )
     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
+    conn.update(worksheet=current_date, data =  df )  
 
 
 # raw_data = {'name': ['jay', 'jay', 'jay', 'jay'],
@@ -64,8 +65,6 @@ new_row = pd.DataFrame( {'name' : ['jay'],
 update_df = df.append(new_row, ignore_index=True)
 
 conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
-st.write(new_row )
-st.write(update_df )
 # conn.write('ok')
 
 # Print results.
