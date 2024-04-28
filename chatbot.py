@@ -44,10 +44,12 @@ try:
 except:
     pass
 
+raw_data = {'name': ['jay', 'jay', 'jay', 'jay'],
+            'contents': ['ok', 'good', 'nice', 'ohyes'],
+            'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
 
-raw_data = {'col0': ['jay', 'jay', 'jay', 'jay'],
-            'col1': ['ok', 'good', 'nice', 'ohyes'],
-            'col2': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
+
+# df.append(pd.Dataframe( {'name'}), ignore_index = True)
 
 update_data = pd.DataFrame(raw_data)
 
