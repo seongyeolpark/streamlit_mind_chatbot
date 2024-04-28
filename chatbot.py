@@ -58,7 +58,7 @@ append_df = pd.DataFrame( {'name' : ['jay'],
                            'contents' : ['veryverygood'],
                            'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
 
-conn.update(worksheet=current_date, data =  pd.concat[ df, append_df] , ignore_index = True)  
+conn.update(worksheet=current_date, data =  pd.concat([ df, append_df]) , ignore_index = True)  
 # conn.write('ok')
 
 # Print results.
