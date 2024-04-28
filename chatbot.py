@@ -54,12 +54,14 @@ except:
 #                          'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] }), ignore_index = True) 
 # update_data = pd.DataFrame(raw_data)
 
-append_df = pd.DataFrame( {'name' : ['jay'],
-                           'contents' : ['veryverygood'],
-                           'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-update_df = pd.concat([ df, append_df], ignore_index = True)
-conn.update(worksheet=current_date, data =  update_df )  
-st.write(update_df )
+# append_df = pd.DataFrame( {'name' : ['jay'],
+#                            'contents' : ['veryverygood'],
+#                            'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+# update_df = pd.concat([ df, append_df], ignore_index = True)
+df.append(pd.Series(['jay', 'niceeeeeeeeeeeee', datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]) , ignore_index = True)
+
+conn.update(worksheet=current_date, data =  df.iloc[:,[0,2]] )  
+st.write(df )
 # conn.write('ok')
 
 # Print results.
