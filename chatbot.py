@@ -44,16 +44,18 @@ try:
 except:
     pass
 
-raw_data = {'name': ['jay', 'jay', 'jay', 'jay'],
-            'contents': ['ok', 'good', 'nice', 'ohyes'],
-            'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
+# raw_data = {'name': ['jay', 'jay', 'jay', 'jay'],
+#             'contents': ['ok', 'good', 'nice', 'ohyes'],
+#             'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
 
 
-# df.append(pd.Dataframe( {'name'}), ignore_index = True)
+df.append(pd.Dataframe( {'name' : ['jay'],
+                         'contents' : ['veryverygood'],
+                         'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] }), ignore_index = True)
 
-update_data = pd.DataFrame(raw_data)
+# update_data = pd.DataFrame(raw_data)
 
-conn.update(worksheet=current_date, data=update_data )
+conn.update(worksheet=current_date, data=df )
 # conn.write('ok')
 
 # Print results.
