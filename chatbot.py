@@ -47,7 +47,7 @@ except:
     st.markdown('except')
     st.markdown(len(df))
 
-
+update_df = df.iloc[:sheet_len + 1, ]
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
@@ -68,7 +68,7 @@ if prompt := st.chat_input("재이의 고민을 얘기해줄래?"):
         st.markdown(prompt)
 
         # update spreadsheet
-        update_df = df.iloc[:sheet_len + 1, ]
+        update_df = update_df.iloc[:sheet_len + 1, ]
         new_row = pd.DataFrame( {'Name' : ['jay'],
                                 'Contents' : [prompt],
                                 'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
@@ -97,7 +97,7 @@ if prompt := st.chat_input("재이의 고민을 얘기해줄래?"):
         message_placeholder.markdown(full_response)
 
         # update spreadsheet
-        update_df = df.iloc[:sheet_len + 1, ]
+        update_df = update_df.iloc[:sheet_len + 1, ]
         new_row = pd.DataFrame( {'Name' : ['papa'],
                                 'Contents' : [full_response],
                                 'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
