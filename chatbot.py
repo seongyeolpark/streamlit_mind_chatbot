@@ -47,47 +47,7 @@ except:
     st.markdown('except')
     st.markdown(len(df))
 
-df = df.iloc[:sheet_len + 1, ]
-new_row = pd.DataFrame( {'Name' : ['jay'],
-                         'Contents' : ['veryverygood'],
-                         'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-update_df = df.append(new_row, ignore_index=True)
 
-conn.update(worksheet=current_date, data =  update_df )  
-
-
-
-# raw_data = {'name': ['jay', 'jay', 'jay', 'jay'],
-#              'contents': ['ok', 'good', 'nice', 'ohyes'],
-#              'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
-# update_date = pd.DataFrame(raw_data)
-
-# df.concat(pd.DataFrame( {'name' : ['jay'],
-#                          'contents' : ['veryverygood'],
-#                          'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] }), ignore_index = True) 
-# update_data = pd.DataFrame(raw_data)
-
-# append_df = pd.DataFrame( {'name' : ['jay'],
-#                            'contents' : ['veryverygood'],
-#                            'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-# update_df = pd.concat([ df, append_df], ignore_index = True)
-# update_df = pd.concat( [df, pd.DataFrame(pd.Series(['jay', 'niceeeeeeeeeeeee', datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]) )], ignore_index = True)
-
-
-# Print results.
-# for row in df.itertuples():
-    # st.write(f"{row.name} write {row.contents} at {row.datetime}")
-
-# upload_file = st.file_uploader('이미지 파일 선택', type=['jpg', 'png', 'jpeg'])
-# # 이미지 업로더, 이미지 파일만 업로드하게 설정
-
-# if upload_file is not None:
-#     upload_file.name = datetime.now().isoformat().replace(':', '_') + '.jpg'
-#     # 지금 시간을 기준으로 업로드 파일 이름 설정
-
-#     with open(upload_file.name, 'wb') as f :
-#         f.write(upload_file.getbuffer())
-#         st.success("Saved file : {}".format(upload_file.name))
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
@@ -108,7 +68,7 @@ if prompt := st.chat_input("재이의 고민을 얘기해줄래?"):
         st.markdown(prompt)
 
         # update spreadsheet
-        df = df.iloc[:sheet_len + 1, ]
+        update_df = df.iloc[:sheet_len + 1, ]
         new_row = pd.DataFrame( {'Name' : ['jay'],
                                 'Contents' : [prompt],
                                 'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
@@ -137,7 +97,7 @@ if prompt := st.chat_input("재이의 고민을 얘기해줄래?"):
         message_placeholder.markdown(full_response)
 
         # update spreadsheet
-        df = df.iloc[:sheet_len + 1, ]
+        update_df = df.iloc[:sheet_len + 1, ]
         new_row = pd.DataFrame( {'Name' : ['papa'],
                                 'Contents' : [full_response],
                                 'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
