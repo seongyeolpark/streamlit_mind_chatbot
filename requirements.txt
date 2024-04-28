@@ -1,4 +1,3 @@
 openai
 streamlit
-sqlalchemy
-mysqlclient
+st-gsheets-connection
