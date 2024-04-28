@@ -38,14 +38,10 @@ try:
     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
     conn.create(worksheet=current_date , data =  df )
     sheet_len = len(df)
-    st.markdown('try')
-    st.markdown( len(df))
     
 except:
     df = conn.read(worksheet=current_date )
     sheet_len = len(df)
-    st.markdown('except')
-    st.markdown(len(df))
 
 update_df = df.iloc[:sheet_len + 1, ]
 
@@ -58,8 +54,6 @@ if "messages" not in st.session_state:
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
-
-
 
 if prompt := st.chat_input("재이의 고민을 얘기해줄래?"): 
     st.session_state.messages.append({"role": "user", "content": prompt})
