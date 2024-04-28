@@ -27,8 +27,7 @@ client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 dad_icon = Image.open('father.jpg')
 girl_icon = Image.open('JAY.png')
 
-#파일 저장경로
-
+current_date = datetime.now().strftime('%Y.%m.%d')
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
@@ -36,10 +35,10 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 # st.write(conn)
 # dataframe으로 가져옴
-df = conn.read()
+df = conn.read(worksheet=current_date )
 st.write(df)
 
-current_date = datetime.now().strftime('%Y.%m.%d')
+
 try:
     conn.create(worksheet=current_date )
 except:
