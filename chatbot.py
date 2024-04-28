@@ -34,6 +34,8 @@ girl_icon = Image.open('JAY.png')
 conn = st.connection("gsheets", type=GSheetsConnection)
 # Create a connection object.
 
+st.write(conn)
+
 df = conn.read()
 
 # Print results.
