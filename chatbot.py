@@ -45,9 +45,8 @@ except:
 
 update_df = df.iloc[:sheet_len + 1, ]
 
-
-df = pd.DataFrame({'lat' : [37.564214],
-                   'lon' : [127.001699] })
+df = pd.DataFrame({'lat' : [37.477186604412],
+                   'lon' : [126.98697921535] })
 
 st.map(df,size=20, color='#0044ff')
 
