@@ -48,9 +48,9 @@ except:
     st.markdown(len(df))
 
 df = df.iloc[:sheet_len + 1, ]
-new_row = pd.DataFrame( {'name' : ['jay'],
-                         'contents' : ['veryverygood'],
-                         'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+new_row = pd.DataFrame( {'Name' : ['jay'],
+                         'Contents' : ['veryverygood'],
+                         'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
 update_df = df.append(new_row, ignore_index=True)
 
 conn.update(worksheet=current_date, data =  update_df )  
