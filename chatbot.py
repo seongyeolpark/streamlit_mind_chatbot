@@ -40,6 +40,7 @@ except:
     conn.create(worksheet=current_date )
     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
 
+
 # raw_data = {'name': ['jay', 'jay', 'jay', 'jay'],
 #              'contents': ['ok', 'good', 'nice', 'ohyes'],
 #              'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
@@ -56,7 +57,7 @@ except:
 # update_df = pd.concat([ df, append_df], ignore_index = True)
 update_df = pd.concat( [df, pd.DataFrame(pd.Series(['jay', 'niceeeeeeeeeeeee', datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]) )], ignore_index = True)
 
-conn.update(worksheet=current_date, data =  update_df.iloc[df.le:,[0,1,2]] )  
+conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
 st.write(update_df )
 # conn.write('ok')
 
