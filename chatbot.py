@@ -64,7 +64,7 @@ new_row = pd.DataFrame( {'name' : ['jay'],
 update_df = df.append(new_row, ignore_index=True)
 
 conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
-st.write(update_df )
+st.write(new_row )
 # conn.write('ok')
 
 # Print results.
