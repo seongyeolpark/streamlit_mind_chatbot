@@ -35,6 +35,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 try:
     df = conn.read(worksheet=current_date )
+    df = df.iloc[:,[0,1,2]]
 
 except:
     conn.create(worksheet=current_date )
