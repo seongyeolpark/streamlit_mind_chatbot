@@ -35,10 +35,11 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 # Create a connection object.
 
 # st.write(conn)
-
+# dataframe으로 가져옴
 df = conn.read()
 
-st.write(df.type())
+conn.write('ok')
+
 # Print results.
 # for row in df.itertuples():
     # st.write(f"{row.name} write {row.contents} at {row.datetime}")
