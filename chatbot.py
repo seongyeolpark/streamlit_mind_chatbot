@@ -41,6 +41,10 @@ df = conn.read(worksheet=current_date )
 
 try:
     conn.create(worksheet=current_date )
+    raw_data = {'name': ['jay'],
+             'contents': ['상담시작'],
+             'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
+    update_date = pd.DataFrame(raw_data)
 except:
     pass
 
@@ -61,7 +65,7 @@ except:
 update_df = df.append(pd.Series(['jay', 'niceeeeeeeeeeeee', datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]) , ignore_index = True)
 
 conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
-st.write(df )
+st.write(update_df )
 # conn.write('ok')
 
 # Print results.
