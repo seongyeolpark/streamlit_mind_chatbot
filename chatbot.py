@@ -34,6 +34,12 @@ girl_icon = Image.open('JAY.png')
 conn = st.connection("gsheets", type=GSheetsConnection)
 # Create a connection object.
 
+df = conn.read()
+
+# Print results.
+for row in df.itertuples():
+    st.write(f"{row.name} write {row.contents} at {row.datetime}")
+
 # upload_file = st.file_uploader('이미지 파일 선택', type=['jpg', 'png', 'jpeg'])
 # # 이미지 업로더, 이미지 파일만 업로드하게 설정
 
