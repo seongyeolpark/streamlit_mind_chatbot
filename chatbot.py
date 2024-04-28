@@ -38,8 +38,9 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 # dataframe으로 가져옴
 df = conn.read()
 
-
-conn.update(data={ 'name' : 'jay', 'contents':'please', 'datetime':datetime.today().strftime('%Y-%m-%d') } )
+current_time = datetime.now().strftime('%Y.%m.%d - %H:%M:%S')
+conn.create(worksheet=current_time )
+conn.update(worksheet=current_time, data={ 'name' : 'jay', 'contents':'please', 'datetime':datetime.today().strftime('%Y-%m-%d') } )
 # conn.write('ok')
 
 # Print results.
