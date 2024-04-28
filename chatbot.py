@@ -60,7 +60,7 @@ except:
 # update_df = pd.concat([ df, append_df], ignore_index = True)
 update_df = df.append(pd.Series(['jay', 'niceeeeeeeeeeeee', datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]) , ignore_index = True)
 
-conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,3]] )  
+conn.update(worksheet=current_date, data =  update_df.iloc[:,[0,1,2]] )  
 st.write(df )
 # conn.write('ok')
 
