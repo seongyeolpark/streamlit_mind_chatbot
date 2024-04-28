@@ -34,13 +34,13 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 # Create a connection object.
 
 try:
-    df = conn.read(worksheet=current_date )
-    df = df.iloc[:,[0,1,2]]
-    
-except:
     conn.create(worksheet=current_date )
     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
     conn.update(worksheet=current_date, data =  df )  
+    
+except:
+    df = conn.read(worksheet=current_date )
+    df = df.iloc[:,[0,1,2]]
 
 
 # new_row = pd.DataFrame( {'name' : ['jay'],
