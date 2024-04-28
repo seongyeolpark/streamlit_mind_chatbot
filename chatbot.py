@@ -3,7 +3,7 @@ import streamlit as st
 from PIL import Image
 from datetime import datetime
 import os
-
+from streamlit_gsheets import GSheetsConnection
 
 instructions = """
 #봇 정보
@@ -28,6 +28,10 @@ dad_icon = Image.open('father.jpg')
 girl_icon = Image.open('JAY.png')
 
 #파일 저장경로
+
+
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
 # Create a connection object.
 
 # upload_file = st.file_uploader('이미지 파일 선택', type=['jpg', 'png', 'jpeg'])
