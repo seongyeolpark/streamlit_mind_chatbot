@@ -49,12 +49,14 @@ raw_data = {'name': ['jay', 'jay', 'jay', 'jay'],
              'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
 update_date = pd.DataFrame(raw_data)
 
-df.append(pd.DataFrame( {'name' : ['jay'],
+df.concat(pd.DataFrame( {'name' : ['jay'],
                          'contents' : ['veryverygood'],
                          'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] }), ignore_index = True) 
 # update_data = pd.DataFrame(raw_data)
 
-conn.update(worksheet=current_date, data=update_date )
+conn.update(worksheet=current_date, data=df.concat(pd.DataFrame( {'name' : ['jay'],
+                                                                'contents' : ['veryverygood'],
+                                                                'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] }), ignore_index = True)  )
 # conn.write('ok')
 
 # Print results.
