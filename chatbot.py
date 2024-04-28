@@ -37,7 +37,7 @@ try:
     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
     conn.create(worksheet=current_date , data =  df )
 
-    len(df)
+    st.write(len(df))
     
 except:
     df = conn.read(worksheet=current_date )
