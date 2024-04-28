@@ -36,7 +36,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 # st.write(conn)
 # dataframe으로 가져옴
 df = conn.read(worksheet=current_date )
-st.write(df)
+# st.write(df)
 
 
 try:
@@ -59,6 +59,7 @@ append_df = pd.DataFrame( {'name' : ['jay'],
                            'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
 
 conn.update(worksheet=current_date, data =  pd.concat([ df, append_df], ignore_index = True) )  
+st.write(pd.concat([ df, append_df])
 # conn.write('ok')
 
 # Print results.
