@@ -49,9 +49,9 @@ except:
 #             'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S'), datetime.today().strftime('%Y-%m-%d - %H:%M:%S')]}
 
 
-df.append(pd.Dataframe( {'name' : ['jay'],
-                         'contents' : ['veryverygood'],
-                         'datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] }), ignore_index = True)
+df.append(pd.Dataframe( {'name' : 'jay',
+                         'contents' : 'veryverygood',
+                         'datetime': datetime.today().strftime('%Y-%m-%d - %H:%M:%S') }), ignore_index = True) 
 
 # update_data = pd.DataFrame(raw_data)
 
