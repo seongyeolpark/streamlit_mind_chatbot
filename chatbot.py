@@ -63,7 +63,7 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("재이의 고민을 얘기해줄래?"): 
+if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"): 
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user", avatar=girl_icon):
         # st.image(girl_icon, width=40)
