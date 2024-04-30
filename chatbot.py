@@ -5,6 +5,7 @@ from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import requests
+import socket
 
 instructions = """
 #봇 정보
@@ -32,6 +33,9 @@ data = {
 }
 result = requests.post(url, data)
 st.markdown(result.text)
+
+st.markdown(socket.gethostbyname(socket.getfqdn()))
+
 
 # 아이콘 이미지 로드
 dad_icon = Image.open('father.jpg')
