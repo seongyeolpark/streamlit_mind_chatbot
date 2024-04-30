@@ -5,7 +5,7 @@ from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import requests
-import request
+from flask import request
 
 instructions = """
 #봇 정보
@@ -34,8 +34,7 @@ data = {
 result = requests.post(url, data)
 st.markdown(result.text)
 
-st.markdown(request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
-
+st.markdown(request.remote_addr)
 
 # 아이콘 이미지 로드
 dad_icon = Image.open('father.jpg')
