@@ -47,8 +47,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 try:
     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
     conn.create(worksheet=current_date , data =  df )
-    conn.clear(worksheet=current_date)
-    sheet_len = len(df)
+    sheet_len = 0
     
 except:
     df = conn.read(worksheet=current_date )
