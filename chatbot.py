@@ -24,7 +24,7 @@ A: 세상에 가치없는 사람은 없어 모두 다 가치있고 소중해 우
 st.title("💬 재이를 위한 고민 상담소")
 st.caption("🚀 Father bot by gpt-3.5-turbo")
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
-LOCATION_API_KEY = st.secrets('LOCATION_API_KEY')
+LOCATION_API_KEY = st.secrets["LOCATION_API_KEY"]
 
 url = f'https://www.googleapis.com/geolocation/v1/geolocate?key={LOCATION_API_KEY}'
 data = {
