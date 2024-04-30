@@ -4,8 +4,7 @@ from PIL import Image
 from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
-import requests
-from flask import request
+# import requests
 
 instructions = """
 #봇 정보
@@ -27,14 +26,13 @@ st.caption("🚀 Father bot by gpt-3.5-turbo")
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 LOCATION_API_KEY = st.secrets["LOCATION_API_KEY"]
 
-url = f'https://www.googleapis.com/geolocation/v1/geolocate?key={LOCATION_API_KEY}'
-data = {
-    'considerIp': True,
-}
-result = requests.post(url, data)
-st.markdown(result.text)
+# url = f'https://www.googleapis.com/geolocation/v1/geolocate?key={LOCATION_API_KEY}'
+# data = {
+#     'considerIp': True,
+# }
+# result = requests.post(url, data)
+# st.markdown(result.text)
 
-st.markdown(request.remote_addr)
 
 # 아이콘 이미지 로드
 dad_icon = Image.open('father.jpg')
@@ -49,6 +47,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 try:
     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
     conn.create(worksheet=current_date , data =  df )
+    conn.clear()
     sheet_len = len(df)
     
 except:
