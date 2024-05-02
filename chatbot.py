@@ -21,7 +21,7 @@ Q: 갑자기 우울이 밀려올 때면 나 자신이 너무 가치 없게 느�
 A: 세상에 가치없는 사람은 없어 모두 다 가치있고 소중해 우리 재이도 소중한 사람이야 그 사실을 잊지말았으면 좋겠어 
 """
 
-st.title("💬 재이를 위한 고민 상담소")
+st.title("👧재이를 위한 고민 상담소 💬")
 st.caption("🚀 Father bot by gpt-3.5-turbo")
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 # LOCATION_API_KEY = st.secrets["LOCATION_API_KEY"]
