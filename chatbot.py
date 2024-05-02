@@ -41,6 +41,9 @@ girl_icon = Image.open('JAY.png')
 current_date = datetime.now().strftime('%Y.%m.%d')
 sheet_len = -1
 
+video_file = open('20240309_150652.mp4', 'rb')
+st.video(video_file)
+
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
@@ -55,8 +58,8 @@ except:
 
 update_df = df.iloc[:sheet_len + 1, ]
 
-df = pd.DataFrame({'lat' : [37.477186604412],
-                   'lon' : [126.98697921535] })
+# df = pd.DataFrame({'lat' : [37.477186604412],
+#                    'lon' : [126.98697921535] })
 
 # map 활용
 # st.map(df,size=10, color='#0044ff',use_container_width = True, zoom  = 10 )
