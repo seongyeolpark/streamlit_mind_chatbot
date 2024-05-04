@@ -21,30 +21,34 @@ Q: 갑자기 우울이 밀려올 때면 나 자신이 너무 가치 없게 느�
 A: 세상에 가치없는 사람은 없어 모두 다 가치있고 소중해 우리 재이도 소중한 사람이야 그 사실을 잊지말았으면 좋겠어 
 """
 
+def update_spreadsheet(name):
+    update_df = update_df.iloc[:sheet_len + 1, ]
+    new_row = pd.DataFrame( {'Name' : [name],
+                            'Contents' : [full_response],
+                            'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+    update_df = update_df.append(new_row, ignore_index=True)
+    conn.update(worksheet=current_date, data =  update_df )  
+    sheet_len+=1
+
+
 st.title("👧재이를 위한 고민 상담소 💬")
 st.caption("🚀 Father bot by gpt-3.5-turbo")
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
-# LOCATION_API_KEY = st.secrets["LOCATION_API_KEY"]
-
-# url = f'https://www.googleapis.com/geolocation/v1/geolocate?key={LOCATION_API_KEY}'
-# data = {
-#     'considerIp': True,
-# }
-# result = requests.post(url, data)
-# st.markdown(result.text)
 
 
 # 아이콘 이미지 로드
 dad_icon = Image.open('father.jpg')
 girl_icon = Image.open('JAY.png')
 
-current_date = datetime.now().strftime('%Y.%m.%d')
-sheet_len = -1
-
+# video
 video_file = open('20240309_150652.mp4', 'rb')
 st.video(video_file)
 
-# Create a connection object.
+
+# gsheet connection
+current_date = datetime.now().strftime('%Y.%m.%d')
+sheet_len = -1
+
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 try:
@@ -78,20 +82,19 @@ for message in st.session_state.messages:
 if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"): 
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user", avatar=girl_icon):
-        # st.image(girl_icon, width=40)
         st.markdown(prompt)
 
         # update spreadsheet
-        update_df = update_df.iloc[:sheet_len + 1, ]
-        new_row = pd.DataFrame( {'Name' : ['jay'],
-                                'Contents' : [prompt],
-                                'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-        update_df = update_df.append(new_row, ignore_index=True)
-        conn.update(worksheet=current_date, data =  update_df )  
-        sheet_len+=1
+        # update_df = update_df.iloc[:sheet_len + 1, ]
+        # new_row = pd.DataFrame( {'Name' : ['jay'],
+        #                         'Contents' : [prompt],
+        #                         'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+        # update_df = update_df.append(new_row, ignore_index=True)
+        # conn.update(worksheet=current_date, data =  update_df )  
+        # sheet_len+=1
+        update_spreadsheet('jay')
 
     with st.chat_message("assistant", avatar=dad_icon):
-        # st.image(dad_icon, width=30)
         message_placeholder = st.empty()
         full_response = ""
 
@@ -112,13 +115,14 @@ if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"):
         message_placeholder.markdown(full_response)
 
         # update spreadsheet
-        update_df = update_df.iloc[:sheet_len + 1, ]
-        new_row = pd.DataFrame( {'Name' : ['papa'],
-                                'Contents' : [full_response],
-                                'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-        update_df = update_df.append(new_row, ignore_index=True)
-        conn.update(worksheet=current_date, data =  update_df )  
-        sheet_len+=1
+        # update_df = update_df.iloc[:sheet_len + 1, ]
+        # new_row = pd.DataFrame( {'Name' : ['papa'],
+        #                         'Contents' : [full_response],
+        #                         'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+        # update_df = update_df.append(new_row, ignore_index=True)
+        # conn.update(worksheet=current_date, data =  update_df )  
+        # sheet_len+=1
+        update_spreadsheet('papa')
 
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
