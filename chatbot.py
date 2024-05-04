@@ -26,6 +26,7 @@ st.caption("🚀 Father bot by gpt-3.5-turbo")
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 
 
+
 # 아이콘 이미지 로드
 dad_icon = Image.open('father.jpg')
 girl_icon = Image.open('JAY.png')
@@ -33,6 +34,7 @@ girl_icon = Image.open('JAY.png')
 # video
 video_file = open('20240309_150652.mp4', 'rb')
 st.video(video_file)
+
 
 
 # gsheet connection
@@ -58,15 +60,6 @@ update_df = df.iloc[:sheet_len + 1, ]
 # map 활용
 # st.map(df,size=10, color='#0044ff',use_container_width = True, zoom  = 10 )
 
-def update_spreadsheet(df,df_len, name):
-    df = df.iloc[:df_len + 1, ]
-    new_row = pd.DataFrame( {'Name' : [name],
-                            'Contents' : [full_response],
-                            'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-    df = df.append(new_row, ignore_index=True)
-    conn.update(worksheet=current_date, data =  df )  
-    sheet_len+=1
-
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
@@ -84,14 +77,13 @@ if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"):
         st.markdown(prompt)
 
         # update spreadsheet
-        # update_df = update_df.iloc[:sheet_len + 1, ]
-        # new_row = pd.DataFrame( {'Name' : ['jay'],
-        #                         'Contents' : [prompt],
-        #                         'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-        # update_df = update_df.append(new_row, ignore_index=True)
-        # conn.update(worksheet=current_date, data =  update_df )  
-        # sheet_len+=1
-        update_spreadsheet(update_df,sheet_len,'jay')
+        update_df = update_df.iloc[:sheet_len + 1, ]
+        new_row = pd.DataFrame( {'Name' : ['jay'],
+                                'Contents' : [prompt],
+                                'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+        update_df = update_df.append(new_row, ignore_index=True)
+        conn.update(worksheet=current_date, data =  update_df )  
+        sheet_len+=1
 
     with st.chat_message("assistant", avatar=dad_icon):
         message_placeholder = st.empty()
@@ -114,14 +106,13 @@ if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"):
         message_placeholder.markdown(full_response)
 
         # update spreadsheet
-        # update_df = update_df.iloc[:sheet_len + 1, ]
-        # new_row = pd.DataFrame( {'Name' : ['papa'],
-        #                         'Contents' : [full_response],
-        #                         'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-        # update_df = update_df.append(new_row, ignore_index=True)
-        # conn.update(worksheet=current_date, data =  update_df )  
-        # sheet_len+=1
-        update_spreadsheet(update_df,sheet_len,'papa')
+        update_df = update_df.iloc[:sheet_len + 1, ]
+        new_row = pd.DataFrame( {'Name' : ['papa'],
+                                'Contents' : [full_response],
+                                'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+        update_df = update_df.append(new_row, ignore_index=True)
+        conn.update(worksheet=current_date, data =  update_df )  
+        sheet_len+=1
 
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
