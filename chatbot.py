@@ -21,16 +21,6 @@ Q: 갑자기 우울이 밀려올 때면 나 자신이 너무 가치 없게 느�
 A: 세상에 가치없는 사람은 없어 모두 다 가치있고 소중해 우리 재이도 소중한 사람이야 그 사실을 잊지말았으면 좋겠어 
 """
 
-def update_spreadsheet(name):
-    update_df = update_df.iloc[:sheet_len + 1, ]
-    new_row = pd.DataFrame( {'Name' : [name],
-                            'Contents' : [full_response],
-                            'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-    update_df = update_df.append(new_row, ignore_index=True)
-    conn.update(worksheet=current_date, data =  update_df )  
-    sheet_len+=1
-
-
 st.title("👧재이를 위한 고민 상담소 💬")
 st.caption("🚀 Father bot by gpt-3.5-turbo")
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
@@ -68,6 +58,15 @@ update_df = df.iloc[:sheet_len + 1, ]
 # map 활용
 # st.map(df,size=10, color='#0044ff',use_container_width = True, zoom  = 10 )
 
+def update_spreadsheet(name):
+    update_df = update_df.iloc[:sheet_len + 1, ]
+    new_row = pd.DataFrame( {'Name' : [name],
+                            'Contents' : [full_response],
+                            'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+    update_df = update_df.append(new_row, ignore_index=True)
+    conn.update(worksheet=current_date, data =  update_df )  
+    sheet_len+=1
+    
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
