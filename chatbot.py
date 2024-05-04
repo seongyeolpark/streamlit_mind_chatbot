@@ -58,8 +58,8 @@ update_df = df.iloc[:sheet_len + 1, ]
 # map 활용
 # st.map(df,size=10, color='#0044ff',use_container_width = True, zoom  = 10 )
 
-def update_spreadsheet(df, name):
-    df = df.iloc[:sheet_len + 1, ]
+def update_spreadsheet(df,df_len, name):
+    df = df.iloc[:df_len + 1, ]
     new_row = pd.DataFrame( {'Name' : [name],
                             'Contents' : [full_response],
                             'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
@@ -91,7 +91,7 @@ if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"):
         # update_df = update_df.append(new_row, ignore_index=True)
         # conn.update(worksheet=current_date, data =  update_df )  
         # sheet_len+=1
-        update_spreadsheet(update_df,'jay')
+        update_spreadsheet(update_df,sheet_len,'jay')
 
     with st.chat_message("assistant", avatar=dad_icon):
         message_placeholder = st.empty()
@@ -121,7 +121,7 @@ if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"):
         # update_df = update_df.append(new_row, ignore_index=True)
         # conn.update(worksheet=current_date, data =  update_df )  
         # sheet_len+=1
-        update_spreadsheet(update_df,'papa')
+        update_spreadsheet(update_df,sheet_len,'papa')
 
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
