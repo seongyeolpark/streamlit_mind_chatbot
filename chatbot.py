@@ -36,7 +36,6 @@ video_file = open('20240309_150652.mp4', 'rb')
 st.video(video_file)
 
 
-
 # gsheet connection
 current_date = datetime.now().strftime('%Y.%m.%d')
 sheet_len = -1
@@ -62,7 +61,8 @@ update_df = df.iloc[:sheet_len + 1, ]
 
 
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-3.5-turbo"
+    #st.session_state["openai_model"] = "gpt-3.5-turbo"
+    st.session_state["openai_model"] = "gpt-4o-mini"
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
