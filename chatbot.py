@@ -40,18 +40,18 @@ st.video(video_file)
 current_date = datetime.now().strftime('%Y.%m.%d')
 sheet_len = -1
 
-conn = st.connection("gsheets", type=GSheetsConnection)
+# conn = st.connection("gsheets", type=GSheetsConnection)
 
-try:
-    df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
-    conn.create(worksheet=current_date , data =  df )
-    sheet_len = 0
+# try:
+#     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
+#     conn.create(worksheet=current_date , data =  df )
+#     sheet_len = 0
     
-except:
-    df = conn.read(worksheet=current_date )
-    sheet_len = len(df)
+# except:
+#     df = conn.read(worksheet=current_date )
+#     sheet_len = len(df)
 
-update_df = df.iloc[:sheet_len + 1, ]
+# update_df = df.iloc[:sheet_len + 1, ]
 
 # df = pd.DataFrame({'lat' : [37.477186604412],
 #                    'lon' : [126.98697921535] })
@@ -99,7 +99,7 @@ if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"):
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
 
-        # update spreadsheet
+        # update spreadsheets
         # update_df = update_df.iloc[:sheet_len + 1, ]
         # new_row = pd.DataFrame( {'Name' : ['papa'],
         #                         'Contents' : [full_response],
