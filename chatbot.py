@@ -104,7 +104,8 @@ if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"):
         new_row = pd.DataFrame( {'Name' : ['papa'],
                                 'Contents' : [full_response],
                                 'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-        update_df = update_df.append(new_row, ignore_index=True)
+        # update_df = update_df.append(new_row, ignore_index=True)
+        update_df = pd.concat([update_df, new_row], ignore_index=True)
         conn.update(worksheet=current_date, data =  update_df )  
         sheet_len+=1
 
