@@ -40,8 +40,6 @@ st.video(video_file)
 current_date = datetime.now().strftime('%Y.%m.%d')
 sheet_len = -1
 
-url = 'https://docs.google.com/spreadsheets/d/1KmToCOaxpmAvh32X31H6Tlrgknwk6I9almYXX5ExxYs/edit?gid=669644727#gid=669644727'
-
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 try:
