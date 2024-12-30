@@ -101,7 +101,7 @@ if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"):
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
 
-        update spreadsheets
+        #update spreadsheets
         update_df = update_df.iloc[:sheet_len + 1, ]
         new_row = pd.DataFrame( {'Name' : ['papa'],
                                 'Contents' : [full_response],
