@@ -2,7 +2,7 @@ from openai import OpenAI
 import streamlit as st
 from PIL import Image
 from datetime import datetime
-# from streamlit_gsheets import GSheetsConnection
+from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import requests
 
@@ -40,16 +40,18 @@ st.video(video_file)
 current_date = datetime.now().strftime('%Y.%m.%d')
 sheet_len = -1
 
-# conn = st.connection("gsheets", type=GSheetsConnection)
+url = 'https://docs.google.com/spreadsheets/d/1KmToCOaxpmAvh32X31H6Tlrgknwk6I9almYXX5ExxYs/edit?gid=669644727#gid=669644727'
 
-# try:
-#     df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
-#     conn.create(worksheet=current_date , data =  df )
-#     sheet_len = 0
+conn = st.connection("gsheets", type=GSheetsConnection)
+
+try:
+    df = pd.DataFrame([], columns=['Name', 'Contents', 'Datetime'] )
+    conn.create(worksheet=current_date , data =  df )
+    sheet_len = 0
     
-# except:
-#     df = conn.read(worksheet=current_date )
-#     sheet_len = len(df)
+except:
+    df = conn.read(worksheet=current_date )
+    sheet_len = len(df)
 
 # update_df = df.iloc[:sheet_len + 1, ]
 
@@ -99,14 +101,14 @@ if prompt := st.chat_input("👋재이의 고민을 얘기해줄래?"):
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
 
-        # update spreadsheets
-        # update_df = update_df.iloc[:sheet_len + 1, ]
-        # new_row = pd.DataFrame( {'Name' : ['papa'],
-        #                         'Contents' : [full_response],
-        #                         'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
-        # update_df = update_df.append(new_row, ignore_index=True)
-        # conn.update(worksheet=current_date, data =  update_df )  
-        # sheet_len+=1
+        update spreadsheets
+        update_df = update_df.iloc[:sheet_len + 1, ]
+        new_row = pd.DataFrame( {'Name' : ['papa'],
+                                'Contents' : [full_response],
+                                'Datetime': [datetime.today().strftime('%Y-%m-%d - %H:%M:%S')] })
+        update_df = update_df.append(new_row, ignore_index=True)
+        conn.update(worksheet=current_date, data =  update_df )  
+        sheet_len+=1
 
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
