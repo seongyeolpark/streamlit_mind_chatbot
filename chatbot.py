@@ -53,7 +53,7 @@ except:
     df = conn.read(worksheet=current_date )
     sheet_len = len(df)
 
-# update_df = df.iloc[:sheet_len + 1, ]
+update_df = df.iloc[:sheet_len + 1, ]
 
 # df = pd.DataFrame({'lat' : [37.477186604412],
 #                    'lon' : [126.98697921535] })
